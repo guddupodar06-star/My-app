@@ -16,16 +16,37 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-            max-width: 400px;
+            max-width: 450px;
             margin: auto;
         }
         h1 {
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
-        p {
+        .subtitle {
             color: #666;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        /* Description box styling */
+        .description {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        .description h3 {
+            margin-top: 0;
+            color: #333;
             font-size: 16px;
+        }
+        .description p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 5px 0 0 0;
         }
         .btn {
             background: #28a745;
@@ -36,7 +57,6 @@
             text-decoration: none;
             border-radius: 8px;
             display: inline-block;
-            margin-top: 20px;
         }
         .btn:hover {
             background: #218838;
@@ -47,8 +67,14 @@
 
     <div class="container">
         <h1>Zoya App</h1>
-        <p>Neeche diye gaye button par click karke app download karein:</p>
+        <p class="subtitle">Aapki Apni AI Companion</p>
         
+        <!-- App ka Description -->
+        <div class="description">
+            <h3>App ke baare mein:</h3>
+            <p>Zoya ek bohot hi friendly AI application hai jo aapki har tarah ki madad karne ke liye taiyar rehti hai. Chahe aapko baatcheet karni ho, sawaal puchne ho ya apne zaroori kaam aasan banane ho, Zoya hamesha aapke sath hai. Ise abhi download karein!</p>
+        </div>
+
         <a href="https://drive.google.com/uc?export=download&id=1mV8P-hjkSQ2qQ4XqS2vAhTW708i88-Pj" class="btn">Download Zoya App (APK)</a>
     </div>
 
