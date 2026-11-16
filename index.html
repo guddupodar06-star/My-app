@@ -3,78 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoya App Download Karein</title>
+    <title>Zoya App - Your Friendly AI Companion</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f9;
-            text-align: center;
-            padding: 50px 20px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-            max-width: 450px;
-            margin: auto;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px 24px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 22px;
+            margin: 0 auto 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 38px;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
         }
         h1 {
-            color: #333;
-            margin-bottom: 5px;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
-        .subtitle {
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-        .description {
-            text-align: left;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #28a745;
-        }
-        .description h3 {
-            margin-top: 0;
-            color: #333;
-            font-size: 16px;
-        }
-        .description p {
-            color: #555;
+        .tagline {
+            color: #94a3b8;
             font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .stat-item span {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            color: #10b981;
+        }
+        .stat-item small {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+        .desc-box {
+            text-align: left;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 3px solid #10b981;
+        }
+        .desc-box h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+        .desc-box p {
+            font-size: 13.5px;
+            color: #cbd5e1;
             line-height: 1.6;
-            margin: 5px 0 0 0;
         }
-        .btn {
-            background: #28a745;
-            color: white;
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: bold;
+        .features {
+            text-align: left;
+            margin-bottom: 24px;
+            padding: 0 6px;
+        }
+        .features li {
+            list-style: none;
+            font-size: 13.5px;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-download {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
             text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .btn:hover {
-            background: #218838;
+        .btn-download:active {
+            transform: scale(0.98);
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        .footer strong {
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="card">
+        <div class="app-icon">🤖</div>
         <h1>Zoya App</h1>
-        <p class="subtitle">Aapki Apni AI Companion</p>
-        
-        <div class="description">
-            <h3>App ke baare mein:</h3>
-            <p>Zoya ek bohot hi friendly AI application hai jo aapki har tarah ki madad karne ke liye taiyar rehti hai. Chahe aapko baatcheet karni ho, sawaal puchne ho ya apne zaroori kaam aasan banane ho, Zoya hamesha aapke sath hai. Ise abhi download karein!</p>
+        <p class="tagline">Aapki Apni Smart & Friendly AI Companion</p>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span>4.9 ★</span>
+                <small>Rating</small>
+            </div>
+            <div class="stat-item">
+                <span>v1.0</span>
+                <small>Version</small>
+            </div>
+            <div class="stat-item">
+                <span>Android</span>
+                <small>Platform</small>
+            </div>
         </div>
 
-        <!-- Updated Direct Download Link with confirm=t -->
-        <a href="https://drive.google.com/uc?export=download&confirm=t&id=1mV8P-hjkSQ2qQ4XqS2vAhTW708i88-Pj" class="btn">Download Zoya App (APK)</a>
+        <div class="desc-box">
+            <h3>App ke baare mein:</h3>
+            <p>Zoya ek bohot hi friendly AI assistant hai jo har waqt aapki madad ke liye taiyar rehti hai. Chahe aapko baatcheet karni ho, kisi sawaal ka jawab chahiye ho ya apna kaam aasan banana ho, Zoya hamesha aapke sath hai.</p>
+        </div>
+
+        <ul class="features">
+            <li>💬 <strong>Friendly Chat:</strong> Bilkul ek dost ki tarah baat karein</li>
+            <li>⚡ <strong>Super Fast:</strong> Turant aur sahi jawab paayein</li>
+            <li>🛡️ <strong>100% Safe:</strong> Bina kisi jhanjhat ke aasan istemal</li>
+        </ul>
+
+        <a href="https://drive.google.com/uc?export=download&confirm=t&id=1mV8P-hjkSQ2qQ4XqS2vAhTW708i88-Pj" class="btn-download">
+            ⬇️ Download Zoya APK
+        </a>
+
+        <div class="footer">
+            Designed & Developed by <strong>Guddu</strong>
+        </div>
     </div>
 
 </body>
