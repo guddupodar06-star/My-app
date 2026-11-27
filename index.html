@@ -3,840 +3,309 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apex Electronics & Gadgets — Complete Business Website</title>
+  <title>Text Repeater Tool — By Guddu</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
-      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #f4f6f9;
-      color: #1e293b;
-      line-height: 1.6;
-      padding-bottom: 70px;
-    }
-
-    section[id], footer[id] {
-      scroll-margin-top: 95px;
-    }
-
-    /* Header */
-    header {
-      background-color: #0f172a;
-      color: #ffffff;
-      padding: 14px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .nav-container {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 700;
-      color: #38bdf8;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    nav a {
-      color: #e2e8f0;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #38bdf8;
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
-      color: #ffffff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 22px;
-      color: #e0f2fe;
-      font-size: 16px;
-    }
-
-    .hero-btns {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      align-items: center;
+      padding: 18px;
     }
 
-    .btn-green {
-      background-color: #22c55e;
-      color: #ffffff;
-      padding: 11px 22px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-green:hover {
-      background-color: #16a34a;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: #ffffff;
-      border: 1px solid #93c5fd;
-      padding: 11px 22px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    /* Sections */
-    .section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      font-size: 24px;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    .section-sub {
-      color: #64748b;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    /* Search & Filter Bar */
-    .filter-bar {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .filter-bar input {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .filter-bar select {
-      width: 180px;
-    }
-
-    /* Grid & Product Cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 16px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .product-img {
-      width: 100%;
-      height: 175px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      background-color: #e2e8f0;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #e0f2fe;
-      color: #0369a1;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 8px;
-      width: fit-content;
-    }
-
-    .card h3 {
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13.5px;
-      color: #475569;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .card-btn {
-      background-color: #0f172a;
-      color: #ffffff;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      width: 100%;
-    }
-
-    .card-btn:hover {
-      background-color: #1e293b;
-    }
-
-    /* Two Column Forms Layout */
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .box {
-      background: #ffffff;
+    .app-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 14px;
       padding: 22px;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
 
-    .box h3 {
-      margin-bottom: 14px;
-      font-size: 19px;
+    h1 {
+      font-size: 24px;
+      color: #38bdf8;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 20px;
     }
 
     .form-group {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     label {
       display: block;
       font-size: 13.5px;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      color: #cbd5e1;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
+      padding: 11px 12px;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 15px;
     }
 
-    .total-box {
-      background: #f1f5f9;
-      padding: 10px 12px;
-      border-radius: 6px;
-      font-weight: 700;
-      margin-bottom: 12px;
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #38bdf8;
     }
 
-    .btn-blue {
-      background-color: #2563eb;
-      color: #ffffff;
-      border: none;
-      padding: 11px;
-      border-radius: 6px;
-      font-weight: 600;
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .btn-blue:hover {
-      background-color: #1d4ed8;
-    }
-
-    /* Saved Records */
-    .record-list {
-      margin-top: 16px;
+    .row {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .record-item {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-left: 4px solid #22c55e;
+    .quick-btns {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: #334155;
+      color: #e2e8f0;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .btn-generate {
+      width: 100%;
       padding: 12px;
-      border-radius: 6px;
+      background: #22c55e;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .btn-generate:hover {
+      background: #16a34a;
+    }
+
+    .output-section {
+      margin-top: 18px;
+    }
+
+    .output-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13.5px;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #94a3b8;
     }
 
-    .record-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
+    textarea#outputText {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.5;
     }
 
-    .wa-small-btn {
-      background: #16a34a;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 5px 9px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .del-btn {
-      background: #ef4444;
-      color: #fff;
-      border: none;
-      padding: 5px 9px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    /* Trust Features */
-    .features {
+    .action-btns {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
     }
 
-    .feature-card {
-      background: #ffffff;
-      padding: 16px;
-      border-radius: 8px;
-      border-left: 4px solid #2563eb;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: #ffffff;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 200;
-    }
-
-    footer {
-      background-color: #0f172a;
-      color: #cbd5e1;
-      text-align: center;
-      padding: 28px 20px;
-      margin-top: 50px;
+    .btn-action {
+      padding: 10px;
+      border: none;
+      border-radius: 7px;
       font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    .btn-copy {
+      background: #2563eb;
+    }
+
+    .btn-copy:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-wa {
+      background: #16a34a;
+    }
+
+    .btn-wa:hover {
+      background: #15803d;
+    }
+
+    .btn-clear {
+      background: #ef4444;
+    }
+
+    .btn-clear:hover {
+      background: #dc2626;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 12px;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. Navigation -->
-  <header>
-    <div class="nav-container">
-      <div class="logo">Apex Electronics</div>
-      <nav>
-        <a href="#products">Products</a>
-        <a href="#order-enquiry">Order & Enquiry</a>
-        <a href="#admin">Admin Panel</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
-  </header>
+  <div class="app-box">
+    <h1>Text Repeater</h1>
+    <p class="subtitle">Koi bhi text ya emoji likhein aur jitni baar chahein repeat karein</p>
 
-  <!-- 2. Hero Banner -->
-  <section class="hero">
-    <h1>Smart Gadgets & Genuine Electronics</h1>
-    <p>Search products, place doorstep orders with address tracking, or connect directly on WhatsApp.</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-green">Browse Products</a>
-      <a href="#order-enquiry" class="btn-outline">Send Enquiry</a>
-    </div>
-  </section>
-
-  <!-- 3. Products + Search & Filter -->
-  <section id="products" class="section">
-    <h2 class="section-title">Our Products</h2>
-    <p class="section-sub">Naam se search karein ya category filter lagayein</p>
-
-    <div class="filter-bar">
-      <input type="text" id="searchInput" placeholder="Product search karein (jaise: Earbuds, Mouse)..." oninput="renderProducts()" />
-      <select id="categoryFilter" onchange="renderProducts()">
-        <option value="All">All Categories</option>
-        <option value="Audio">Audio</option>
-        <option value="Work & Desk">Work & Desk</option>
-        <option value="Power">Power</option>
-      </select>
+    <div class="form-group">
+      <label for="inputText">Apna Text ya Emoji Likhein</label>
+      <input type="text" id="inputText" placeholder="Jaise: Sorry 😅 ya Happy Birthday 🎉" />
     </div>
 
-    <div class="grid" id="productGrid"></div>
-  </section>
-
-  <!-- 4. Order Form + Customer Enquiry Form -->
-  <section id="order-enquiry" class="section">
-    <h2 class="section-title">Order & Customer Support</h2>
-    <p class="section-sub">Companies apni website par orders aur leads dono collect karti hain</p>
-
-    <div class="two-col">
-      <!-- Order & Address Form -->
-      <div class="box">
-        <h3>Place Delivery Order</h3>
-        <div class="form-group">
-          <label>Select Product</label>
-          <select id="orderProductSelect" onchange="updateTotal()"></select>
-        </div>
-        <div class="form-group">
-          <label>Quantity</label>
-          <input type="number" id="orderQty" min="1" value="1" oninput="updateTotal()" />
-        </div>
-        <div class="form-group">
-          <label>Customer Name</label>
-          <input type="text" id="orderName" placeholder="Poora naam likhein" />
-        </div>
-        <div class="form-group">
-          <label>Mobile Number</label>
-          <input type="tel" id="orderPhone" maxlength="10" placeholder="10-digit mobile number" />
-        </div>
-        <div class="form-group">
-          <label>Full Delivery Address</label>
-          <textarea id="orderAddress" rows="3" placeholder="House No, Area, Landmark, City, Pincode"></textarea>
-        </div>
-        <div class="total-box">Total Payable: ₹<span id="orderTotal">0</span></div>
-        <button class="btn-green" style="width:100%;" onclick="placeOrder()">Confirm Order & Save</button>
-
-        <div class="record-list" id="ordersList"></div>
-      </div>
-
-      <!-- Contact / Business Enquiry Form -->
-      <div class="box">
-        <h3>Send Business / Product Enquiry</h3>
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="enqName" placeholder="Apna naam likhein" />
-        </div>
-        <div class="form-group">
-          <label>Phone / WhatsApp Number</label>
-          <input type="tel" id="enqPhone" maxlength="10" placeholder="10-digit number" />
-        </div>
-        <div class="form-group">
-          <label>Enquiry Type</label>
-          <select id="enqType">
-            <option value="Bulk Order">Bulk / Wholesale Order</option>
-            <option value="Product Warranty">Product Warranty / Support</option>
-            <option value="General Question">General Question</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="enqMessage" rows="4" placeholder="Apna sawaal ya requirement likhein..."></textarea>
-        </div>
-        <button class="btn-blue" onclick="submitEnquiry()">Submit Enquiry</button>
-
-        <div class="record-list" id="enquiriesList"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Admin Panel (Add New Product with Image) -->
-  <section id="admin" class="section">
-    <h2 class="section-title">Company Admin: Add New Product</h2>
-    <p class="section-sub">Owner: Guddu — naya product, price aur image add karein</p>
-
-    <div class="box" style="max-width: 600px;">
+    <div class="row">
       <div class="form-group">
-        <label>Product Name</label>
-        <input type="text" id="newProdName" placeholder="Jaise: Smart Fitness Watch" />
+        <label for="repeatCount">Kitni Baar Repeat Karna Hai?</label>
+        <input type="number" id="repeatCount" min="1" max="5000" value="10" />
       </div>
+
       <div class="form-group">
-        <label>Category</label>
-        <select id="newProdCategory">
-          <option value="Audio">Audio</option>
-          <option value="Work & Desk">Work & Desk</option>
-          <option value="Power">Power</option>
+        <label for="separator">Bech Mein Kya Aaye?</label>
+        <select id="separator">
+          <option value="newline">New Line (Har baar nayi line)</option>
+          <option value="space">Space (Ek space ke saath)</option>
+          <option value="comma">Comma (, )</option>
+          <option value="none">Kuch Nahi (Chipak kar)</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Price (₹)</label>
-        <input type="number" id="newProdPrice" placeholder="Jaise: 1999" />
-      </div>
-      <div class="form-group">
-        <label>Image URL / Path (Optional — jaise: images/watch.jpg ya link)</label>
-        <input type="text" id="newProdImageUrl" placeholder="https://... ya images/product.jpg" />
-      </div>
-      <div class="form-group">
-        <label>Ya Device se Photo File Chunein (Optional)</label>
-        <input type="file" id="newProdImageFile" accept="image/*" />
-      </div>
-      <div class="form-group">
-        <label>Short Description</label>
-        <input type="text" id="newProdDesc" placeholder="Product ki khaasiyat likhein..." />
-      </div>
-      <button class="btn-blue" onclick="addNewProduct()">Add Product to Store</button>
     </div>
-  </section>
 
-  <!-- 6. About / Trust Section -->
-  <section id="about" class="section">
-    <h2 class="section-title">Why Customers Trust Us</h2>
-    <div class="features" style="margin-top: 14px;">
-      <div class="feature-card">
-        <h4>Verified Quality</h4>
-        <p>Har product dispatch se pehle check kiya jaata hai.</p>
-      </div>
-      <div class="feature-card">
-        <h4>Fast Doorstep Delivery</h4>
-        <p>Complete address tracking ke saath safe delivery.</p>
-      </div>
-      <div class="feature-card">
-        <h4>Instant Support</h4>
-        <p>Direct WhatsApp aur enquiry form se fast reply.</p>
+    <div class="form-group">
+      <div class="quick-btns">
+        <button type="button" class="chip" onclick="setCount(10)">10x</button>
+        <button type="button" class="chip" onclick="setCount(50)">50x</button>
+        <button type="button" class="chip" onclick="setCount(100)">100x</button>
+        <button type="button" class="chip" onclick="setCount(500)">500x</button>
+        <button type="button" class="chip" onclick="setCount(1000)">1000x</button>
       </div>
     </div>
-  </section>
 
-  <!-- Floating WhatsApp Button -->
-  <a id="floatingWhatsApp" class="whatsapp-float" href="#" target="_blank">
-    WhatsApp Chat
-  </a>
+    <button class="btn-generate" onclick="generateText()">Repeat Karein</button>
 
-  <footer>
-    <p><strong>Apex Electronics & Gadgets</strong> | Owner: <strong>Guddu</strong> | Phone/WhatsApp: <strong>+91 8383864128</strong></p>
-  </footer>
+    <div class="output-section">
+      <div class="output-header">
+        <span>Result:</span>
+        <span id="charCount">0 characters</span>
+      </div>
+      <textarea id="outputText" readonly placeholder="Yahan aapka repeated text dikhega..."></textarea>
+
+      <div class="action-btns">
+        <button class="btn-action btn-copy" onclick="copyText()">Copy</button>
+        <button class="btn-action btn-wa" onclick="shareWhatsApp()">WhatsApp</button>
+        <button class="btn-action btn-clear" onclick="clearAll()">Clear</button>
+      </div>
+    </div>
+
+    <div class="footer-note">Made by Guddu</div>
+  </div>
 
   <script>
-    const OWNER_NAME = "Guddu";
-    const WHATSAPP_NUMBER = "918383864128";
-    const FALLBACK_IMAGE = "https://via.placeholder.com/400x250?text=Apex+Gadget";
-
-    const defaultProducts = [
-      {
-        id: 1,
-        name: "Wireless ANC Earbuds",
-        category: "Audio",
-        price: 1499,
-        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
-        desc: "Clear calling mic, fast charging case, aur deep bass."
-      },
-      {
-        id: 2,
-        name: "Ergonomic Wireless Mouse",
-        category: "Work & Desk",
-        price: 699,
-        image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
-        desc: "Silent clicks aur smooth tracking daily work ke liye."
-      },
-      {
-        id: 3,
-        name: "20,000mAh Fast Power Bank",
-        category: "Power",
-        price: 1299,
-        image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=600&q=80",
-        desc: "22.5W fast charging ke saath reliable travel backup."
-      }
-    ];
-
-    let products = JSON.parse(localStorage.getItem("apexProducts")) || defaultProducts;
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("floatingWhatsApp").href =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello ${OWNER_NAME} (Apex Electronics), mujhe products ke baare mein jaankari chahiye.`)}`;
-      renderProducts();
-      populateOrderSelect();
-      renderOrders();
-      renderEnquiries();
-    });
-
-    function buildWhatsAppUrl(text) {
-      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    function setCount(num) {
+      document.getElementById("repeatCount").value = num;
     }
 
-    function renderProducts() {
-      const grid = document.getElementById("productGrid");
-      const search = document.getElementById("searchInput").value.toLowerCase();
-      const category = document.getElementById("categoryFilter").value;
-      grid.innerHTML = "";
+    function generateText() {
+      const text = document.getElementById("inputText").value;
+      const count = parseInt(document.getElementById("repeatCount").value, 10);
+      const sepType = document.getElementById("separator").value;
 
-      const filtered = products.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
-        const matchesCat = category === "All" || p.category === category;
-        return matchesSearch && matchesCat;
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = "<p style='color:#64748b;'>Koi matching product nahi mila.</p>";
+      if (!text) {
+        alert("Pehle koi text ya emoji likhein!");
         return;
       }
 
-      filtered.forEach(p => {
-        const imgSrc = p.image || FALLBACK_IMAGE;
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div>
-            <img src="${imgSrc}" alt="${p.name}" class="product-img" onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';" />
-            <span class="badge">${p.category}</span>
-            <h3>${p.name}</h3>
-            <p>${p.desc}</p>
-          </div>
-          <div>
-            <div class="price">₹${p.price}</div>
-            <button class="card-btn" onclick="chooseProduct(${p.id})">Order Now</button>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function populateOrderSelect() {
-      const select = document.getElementById("orderProductSelect");
-      select.innerHTML = "";
-      products.forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p.id;
-        opt.textContent = `${p.name} — ₹${p.price}`;
-        select.appendChild(opt);
-      });
-      updateTotal();
-    }
-
-    function chooseProduct(id) {
-      document.getElementById("orderProductSelect").value = id;
-      updateTotal();
-      document.getElementById("order-enquiry").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function updateTotal() {
-      const selectedId = Number(document.getElementById("orderProductSelect").value);
-      const product = products.find(p => p.id === selectedId);
-      const qty = Math.max(1, Number(document.getElementById("orderQty").value) || 1);
-      document.getElementById("orderTotal").innerText = product ? product.price * qty : 0;
-    }
-
-    function placeOrder() {
-      const selectedId = Number(document.getElementById("orderProductSelect").value);
-      const product = products.find(p => p.id === selectedId);
-      const qty = Math.max(1, Number(document.getElementById("orderQty").value) || 1);
-      const name = document.getElementById("orderName").value.trim();
-      const phone = document.getElementById("orderPhone").value.trim();
-      const address = document.getElementById("orderAddress").value.trim();
-
-      if (!product || !name || !/^[6-9]\d{9}$/.test(phone) || !address) {
-        alert("Kripya sahi Naam, 10-digit Mobile Number aur Delivery Address bharein!");
+      if (isNaN(count) || count < 1 || count > 5000) {
+        alert("Kripya 1 se 5000 ke beech ka number daalein!");
         return;
       }
 
-      const order = {
-        id: Date.now(),
-        productName: product.name,
-        qty,
-        total: product.price * qty,
-        name,
-        phone,
-        address
-      };
+      let sep = "\n";
+      if (sepType === "space") sep = " ";
+      if (sepType === "comma") sep = ", ";
+      if (sepType === "none") sep = "";
 
-      const orders = JSON.parse(localStorage.getItem("apexOrders")) || [];
-      orders.unshift(order);
-      localStorage.setItem("apexOrders", JSON.stringify(orders));
-
-      document.getElementById("orderName").value = "";
-      document.getElementById("orderPhone").value = "";
-      document.getElementById("orderAddress").value = "";
-      document.getElementById("orderQty").value = 1;
-      updateTotal();
-      renderOrders();
-
-      const msg = `Naya Order (Owner: ${OWNER_NAME})\nProduct: ${order.productName} x ${order.qty}\nTotal: ₹${order.total}\nCustomer: ${order.name} (${order.phone})\nAddress: ${order.address}`;
-      const openWA = confirm("Order save ho gaya! Kya aap order details Guddu ke WhatsApp par bhejna chahte hain?");
-      if (openWA) {
-        window.open(buildWhatsAppUrl(msg), "_blank");
-      }
+      const result = Array(count).fill(text).join(sep);
+      const outputEl = document.getElementById("outputText");
+      outputEl.value = result;
+      document.getElementById("charCount").innerText = result.length + " characters";
     }
 
-    function renderOrders() {
-      const list = document.getElementById("ordersList");
-      const orders = JSON.parse(localStorage.getItem("apexOrders")) || [];
-      list.innerHTML = orders.length ? "<strong>Saved Orders:</strong>" : "";
-
-      orders.forEach(o => {
-        const waText = `Order Detail (Owner: ${OWNER_NAME}):\n${o.productName} x ${o.qty} (₹${o.total})\nName: ${o.name} (${o.phone})\nAddress: ${o.address}`;
-        const div = document.createElement("div");
-        div.className = "record-item";
-        div.innerHTML = `
-          <div>
-            <strong>${o.productName} × ${o.qty}</strong> (₹${o.total})<br>
-            <span>${o.name} | ${o.phone}</span><br>
-            <small>Address: ${o.address}</small>
-          </div>
-          <div class="record-actions">
-            <a class="wa-small-btn" href="${buildWhatsAppUrl(waText)}" target="_blank">WhatsApp</a>
-            <button class="del-btn" onclick="deleteOrder(${o.id})">Delete</button>
-          </div>
-        `;
-        list.appendChild(div);
-      });
-    }
-
-    function deleteOrder(id) {
-      let orders = JSON.parse(localStorage.getItem("apexOrders")) || [];
-      orders = orders.filter(o => o.id !== id);
-      localStorage.setItem("apexOrders", JSON.stringify(orders));
-      renderOrders();
-    }
-
-    function submitEnquiry() {
-      const name = document.getElementById("enqName").value.trim();
-      const phone = document.getElementById("enqPhone").value.trim();
-      const type = document.getElementById("enqType").value;
-      const message = document.getElementById("enqMessage").value.trim();
-
-      if (!name || !/^[6-9]\d{9}$/.test(phone) || !message) {
-        alert("Kripya sahi Naam, 10-digit Number aur Message bharein!");
+    function copyText() {
+      const output = document.getElementById("outputText").value;
+      if (!output) {
+        alert("Copy karne ke liye pehle text generate karein!");
         return;
       }
 
-      const enquiries = JSON.parse(localStorage.getItem("apexEnquiries")) || [];
-      enquiries.unshift({ id: Date.now(), name, phone, type, message });
-      localStorage.setItem("apexEnquiries", JSON.stringify(enquiries));
-
-      document.getElementById("enqName").value = "";
-      document.getElementById("enqPhone").value = "";
-      document.getElementById("enqMessage").value = "";
-      renderEnquiries();
-
-      const msg = `Nayi Enquiry (Owner: ${OWNER_NAME} | ${type})\nNaam: ${name} (${phone})\nMessage: ${message}`;
-      const openWA = confirm("Enquiry save ho gayi! Kya aap ise WhatsApp par bhi bhejna chahte hain?");
-      if (openWA) {
-        window.open(buildWhatsAppUrl(msg), "_blank");
-      }
-    }
-
-    function renderEnquiries() {
-      const list = document.getElementById("enquiriesList");
-      const enquiries = JSON.parse(localStorage.getItem("apexEnquiries")) || [];
-      list.innerHTML = enquiries.length ? "<strong>Recent Enquiries:</strong>" : "";
-
-      enquiries.forEach(e => {
-        const waText = `Enquiry (${e.type}) for ${OWNER_NAME}:\nFrom: ${e.name} (${e.phone})\nMessage: ${e.message}`;
-        const div = document.createElement("div");
-        div.className = "record-item";
-        div.style.borderLeftColor = "#2563eb";
-        div.innerHTML = `
-          <div>
-            <strong>${e.type}</strong> — ${e.name} (${e.phone})<br>
-            <small>${e.message}</small>
-          </div>
-          <div class="record-actions">
-            <a class="wa-small-btn" href="${buildWhatsAppUrl(waText)}" target="_blank">WhatsApp</a>
-            <button class="del-btn" onclick="deleteEnquiry(${e.id})">Delete</button>
-          </div>
-        `;
-        list.appendChild(div);
+      navigator.clipboard.writeText(output).then(() => {
+        alert("Text copy ho gaya! Ab kahin bhi paste karein.");
+      }).catch(() => {
+        const el = document.getElementById("outputText");
+        el.select();
+        document.execCommand("copy");
+        alert("Text copy ho gaya!");
       });
     }
 
-    function deleteEnquiry(id) {
-      let enquiries = JSON.parse(localStorage.getItem("apexEnquiries")) || [];
-      enquiries = enquiries.filter(e => e.id !== id);
-      localStorage.setItem("apexEnquiries", JSON.stringify(enquiries));
-      renderEnquiries();
-    }
-
-    function saveProductToStore(name, category, price, image, desc) {
-      products.push({
-        id: Date.now(),
-        name,
-        category,
-        price,
-        image: image || FALLBACK_IMAGE,
-        desc
-      });
-      localStorage.setItem("apexProducts", JSON.stringify(products));
-
-      document.getElementById("newProdName").value = "";
-      document.getElementById("newProdPrice").value = "";
-      document.getElementById("newProdImageUrl").value = "";
-      document.getElementById("newProdImageFile").value = "";
-      document.getElementById("newProdDesc").value = "";
-
-      renderProducts();
-      populateOrderSelect();
-      alert("Naya product photo ke saath store mein add ho gaya!");
-    }
-
-    function addNewProduct() {
-      const name = document.getElementById("newProdName").value.trim();
-      const category = document.getElementById("newProdCategory").value;
-      const price = Number(document.getElementById("newProdPrice").value);
-      const imageUrl = document.getElementById("newProdImageUrl").value.trim();
-      const fileInput = document.getElementById("newProdImageFile");
-      const desc = document.getElementById("newProdDesc").value.trim();
-
-      if (!name || !price || price <= 0 || !desc) {
-        alert("Kripya product ki saari details sahi se bharein!");
+    function shareWhatsApp() {
+      const output = document.getElementById("outputText").value;
+      if (!output) {
+        alert("Share karne ke liye pehle text generate karein!");
         return;
       }
+      const url = "https://wa.me/?text=" + encodeURIComponent(output);
+      window.open(url, "_blank");
+    }
 
-      if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          saveProductToStore(name, category, price, e.target.result, desc);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-      } else {
-        saveProductToStore(name, category, price, imageUrl, desc);
-      }
+    function clearAll() {
+      document.getElementById("inputText").value = "";
+      document.getElementById("outputText").value = "";
+      document.getElementById("charCount").innerText = "0 characters";
     }
   </script>
 
