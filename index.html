@@ -17,6 +17,12 @@
       background-color: #f4f6f9;
       color: #1e293b;
       line-height: 1.6;
+      padding-bottom: 70px;
+    }
+
+    /* Sticky header overlap fix for anchor links */
+    section[id], footer[id] {
+      scroll-margin-top: 95px;
     }
 
     /* Header */
@@ -297,6 +303,24 @@
       font-size: 13.5px;
     }
 
+    .record-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .wa-small-btn {
+      background: #16a34a;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 5px 9px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
     .del-btn {
       background: #ef4444;
       color: #fff;
@@ -459,7 +483,7 @@
   <!-- 5. Admin Panel (Add New Product to Website) -->
   <section id="admin" class="section">
     <h2 class="section-title">Company Admin: Add New Product</h2>
-    <p class="section-sub">Company owner khud naya product aur price website par add kar sakta hai</p>
+    <p class="section-sub">Owner: Guddu — naya product aur price store mein add karein</p>
 
     <div class="box" style="max-width: 600px;">
       <div class="form-group">
@@ -505,17 +529,19 @@
     </div>
   </section>
 
-  <!-- Floating WhatsApp Button (Apna number 91XXXXXXXXXX ki jagah daalein) -->
-  <a class="whatsapp-float" href="https://wa.me/919999999999?text=Hello%20Apex%20Electronics,%20mujhe%20ek%20product%20ke%20baare%20mein%20jaankari%20chahiye." target="_blank">
+  <!-- Floating WhatsApp Button -->
+  <a id="floatingWhatsApp" class="whatsapp-float" href="#" target="_blank">
     WhatsApp Chat
   </a>
 
   <footer>
-    <p><strong>Apex Electronics & Gadgets</strong> | Delhi, India | support@apexelectronics.example</p>
+    <p><strong>Apex Electronics & Gadgets</strong> | Owner: <strong>Guddu</strong> | Phone/WhatsApp: <strong>+91 8383864128</strong></p>
   </footer>
 
   <script>
-    // Default Products
+    const OWNER_NAME = "Guddu";
+    const WHATSAPP_NUMBER = "918383864128";
+
     const defaultProducts = [
       { id: 1, name: "Wireless ANC Earbuds", category: "Audio", price: 1499, desc: "Clear calling mic, fast charging case, aur deep bass." },
       { id: 2, name: "Ergonomic Wireless Mouse", category: "Work & Desk", price: 699, desc: "Silent clicks aur smooth tracking daily work ke liye." },
@@ -525,11 +551,17 @@
     let products = JSON.parse(localStorage.getItem("apexProducts")) || defaultProducts;
 
     document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("floatingWhatsApp").href =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello ${OWNER_NAME} (Apex Electronics), mujhe products ke baare mein jaankari chahiye.`)}`;
       renderProducts();
       populateOrderSelect();
       renderOrders();
       renderEnquiries();
     });
+
+    function buildWhatsAppUrl(text) {
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
 
     function renderProducts() {
       const grid = document.getElementById("productGrid");
@@ -624,7 +656,12 @@
       document.getElementById("orderQty").value = 1;
       updateTotal();
       renderOrders();
-      alert("Order confirm aur save ho gaya!");
+
+      const msg = `Naya Order (Owner: ${OWNER_NAME})\nProduct: ${order.productName} x ${order.qty}\nTotal: ₹${order.total}\nCustomer: ${order.name} (${order.phone})\nAddress: ${order.address}`;
+      const openWA = confirm("Order save ho gaya! Kya aap order details Guddu ke WhatsApp par bhejna chahte hain?");
+      if (openWA) {
+        window.open(buildWhatsAppUrl(msg), "_blank");
+      }
     }
 
     function renderOrders() {
@@ -633,6 +670,7 @@
       list.innerHTML = orders.length ? "<strong>Saved Orders:</strong>" : "";
 
       orders.forEach(o => {
+        const waText = `Order Detail (Owner: ${OWNER_NAME}):\n${o.productName} x ${o.qty} (₹${o.total})\nName: ${o.name} (${o.phone})\nAddress: ${o.address}`;
         const div = document.createElement("div");
         div.className = "record-item";
         div.innerHTML = `
@@ -641,7 +679,10 @@
             <span>${o.name} | ${o.phone}</span><br>
             <small>Address: ${o.address}</small>
           </div>
-          <button class="del-btn" onclick="deleteOrder(${o.id})">Delete</button>
+          <div class="record-actions">
+            <a class="wa-small-btn" href="${buildWhatsAppUrl(waText)}" target="_blank">WhatsApp</a>
+            <button class="del-btn" onclick="deleteOrder(${o.id})">Delete</button>
+          </div>
         `;
         list.appendChild(div);
       });
@@ -673,7 +714,12 @@
       document.getElementById("enqPhone").value = "";
       document.getElementById("enqMessage").value = "";
       renderEnquiries();
-      alert("Enquiry submit ho gayi!");
+
+      const msg = `Nayi Enquiry (Owner: ${OWNER_NAME} | ${type})\nNaam: ${name} (${phone})\nMessage: ${message}`;
+      const openWA = confirm("Enquiry save ho gayi! Kya aap ise WhatsApp par bhi bhejna chahte hain?");
+      if (openWA) {
+        window.open(buildWhatsAppUrl(msg), "_blank");
+      }
     }
 
     function renderEnquiries() {
@@ -682,6 +728,7 @@
       list.innerHTML = enquiries.length ? "<strong>Recent Enquiries:</strong>" : "";
 
       enquiries.forEach(e => {
+        const waText = `Enquiry (${e.type}) for ${OWNER_NAME}:\nFrom: ${e.name} (${e.phone})\nMessage: ${e.message}`;
         const div = document.createElement("div");
         div.className = "record-item";
         div.style.borderLeftColor = "#2563eb";
@@ -690,7 +737,10 @@
             <strong>${e.type}</strong> — ${e.name} (${e.phone})<br>
             <small>${e.message}</small>
           </div>
-          <button class="del-btn" onclick="deleteEnquiry(${e.id})">Delete</button>
+          <div class="record-actions">
+            <a class="wa-small-btn" href="${buildWhatsAppUrl(waText)}" target="_blank">WhatsApp</a>
+            <button class="del-btn" onclick="deleteEnquiry(${e.id})">Delete</button>
+          </div>
         `;
         list.appendChild(div);
       });
