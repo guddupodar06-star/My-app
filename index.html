@@ -3,127 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product & Address Manager</title>
+  <title>Mobile Number Info Lookup (Demo)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
     }
-    .form-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    input, textarea, button {
+    .container {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 16px;
       box-sizing: border-box;
     }
     button {
-      background-color: #28a745;
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
       color: white;
       border: none;
+      border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #218838;
+      background-color: #0056b3;
     }
-    .product-card {
-      background: #fff;
+    .result-box {
+      margin-top: 20px;
       padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: #f8f9fa;
+      border-left: 4px solid #007bff;
+      text-align: left;
+      display: none;
+      border-radius: 4px;
     }
-    .delete-btn {
-      background-color: #dc3545;
-      width: auto;
-      padding: 6px 12px;
+    .result-box p {
+      margin: 6px 0;
       font-size: 14px;
+      color: #333;
     }
-    .delete-btn:hover {
-      background-color: #c82333;
+    .disclaimer {
+      margin-top: 15px;
+      font-size: 11px;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-  <div class="form-box">
-    <h2>Product aur Address Add Karein</h2>
-    <input type="text" id="productName" placeholder="Product ka naam (jaise: Wireless Mouse)" required>
-    <input type="number" id="productPrice" placeholder="Price (₹ mein)" required>
-    <textarea id="productAddress" rows="3" placeholder="Product / Delivery Address likhein..." required></textarea>
-    <button onclick="addProduct()">Product Save Karein</button>
+  <div class="container">
+    <h2>Number Circle Lookup</h2>
+    <p style="font-size: 13px; color: #666;">10-digit Indian mobile number daalein</p>
+    
+    <input type="tel" id="phoneInput" maxlength="10" placeholder="Jaise: 9811XXXXXX">
+    <button onclick="checkNumber()">Details Check Karein</button>
+
+    <div class="result-box" id="resultBox">
+      <p><strong>Number:</strong> <span id="resNumber"></span></p>
+      <p><strong>Country:</strong> India (+91)</p>
+      <p><strong>Telecom Circle:</strong> <span id="resCircle"></span></p>
+      <p><strong>Original Operator:</strong> <span id="resOperator"></span></p>
+    </div>
+
+    <div class="disclaimer">
+      *Yeh sirf series-based general circle dikhata hai, live location nahi.
+    </div>
   </div>
 
-  <h3>Saved Products List:</h3>
-  <div id="productList"></div>
-
   <script>
-    // Page load hote hi purane saved products dikhayein
-    document.addEventListener("DOMContentLoaded", displayProducts);
+    // Sample prefix database (aap ismein aur prefixes add kar sakte hain)
+    const prefixData = {
+      "9810": { circle: "Delhi NCR", operator: "Airtel" },
+      "9811": { circle: "Delhi NCR", operator: "Vodafone Idea (Vi)" },
+      "9818": { circle: "Delhi NCR", operator: "Airtel" },
+      "9820": { circle: "Mumbai", operator: "Vodafone Idea (Vi)" },
+      "9821": { circle: "Mumbai", operator: "Airtel" },
+      "9830": { circle: "Kolkata", operator: "Vodafone Idea (Vi)" },
+      "9840": { circle: "Chennai", operator: "Airtel" },
+      "9845": { circle: "Karnataka", operator: "Airtel" },
+      "9415": { circle: "UP East", operator: "BSNL" },
+      "9412": { circle: "UP West", operator: "BSNL" },
+      "7011": { circle: "Delhi NCR", operator: "Jio" },
+      "8800": { circle: "Delhi NCR", operator: "Airtel" },
+      "9999": { circle: "Delhi NCR", operator: "Vodafone Idea (Vi)" },
+      "9871": { circle: "Delhi NCR", operator: "Airtel" }
+    };
 
-    function addProduct() {
-      const name = document.getElementById("productName").value.trim();
-      const price = document.getElementById("productPrice").value.trim();
-      const address = document.getElementById("productAddress").value.trim();
+    function checkNumber() {
+      const input = document.getElementById("phoneInput").value.trim();
+      const resultBox = document.getElementById("resultBox");
 
-      if (!name || !price || !address) {
-        alert("Kripya saari details bharein!");
+      // Validation: 10 digits aur 6, 7, 8, ya 9 se shuru hona chahiye
+      if (!/^[6-9]\d{9}$/.test(input)) {
+        alert("Kripya sahi 10-digit Indian mobile number daalein!");
+        resultBox.style.display = "none";
         return;
       }
 
-      const product = { id: Date.now(), name, price, address };
-      
-      // Purana data nikal kar naya product add karein
-      let products = JSON.parse(localStorage.getItem("myProducts")) || [];
-      products.push(product);
-      localStorage.setItem("myProducts", JSON.stringify(products));
+      const prefix4 = input.substring(0, 4);
+      const info = prefixData[prefix4];
 
-      // Form khali karein
-      document.getElementById("productName").value = "";
-      document.getElementById("productPrice").value = "";
-      document.getElementById("productAddress").value = "";
+      document.getElementById("resNumber").innerText = "+91 " + input;
 
-      displayProducts();
-    }
+      if (info) {
+        document.getElementById("resCircle").innerText = info.circle;
+        document.getElementById("resOperator").innerText = info.operator;
+      } else {
+        // Agar prefix list mein nahi hai toh general series logic
+        const firstDigit = input.charAt(0);
+        let guessOperator = "Jio / Airtel / Vi";
+        if (firstDigit === "6") guessOperator = "Reliance Jio (Mostly)";
+        if (firstDigit === "9") guessOperator = "Airtel / Vi / BSNL";
 
-    function displayProducts() {
-      const list = document.getElementById("productList");
-      const products = JSON.parse(localStorage.getItem("myProducts")) || [];
-      list.innerHTML = "";
+        document.getElementById("resCircle").innerText = "All India Circle (Series not in local list)";
+        document.getElementById("resOperator").innerText = guessOperator;
+      }
 
-      products.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-          <div>
-            <strong>${item.name}</strong> - ₹${item.price}<br>
-            <small><b>Address:</b> ${item.address}</small>
-          </div>
-          <button class="delete-btn" onclick="deleteProduct(${item.id})">Delete</button>
-        `;
-        list.appendChild(card);
-      });
-    }
-
-    function deleteProduct(id) {
-      let products = JSON.parse(localStorage.getItem("myProducts")) || [];
-      products = products.filter(item => item.id !== id);
-      localStorage.setItem("myProducts", JSON.stringify(products));
-      displayProducts();
+      resultBox.style.display = "block";
     }
   </script>
 
