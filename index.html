@@ -20,7 +20,6 @@
       padding-bottom: 70px;
     }
 
-    /* Sticky header overlap fix for anchor links */
     section[id], footer[id] {
       scroll-margin-top: 95px;
     }
@@ -169,12 +168,21 @@
     .card {
       background: #ffffff;
       border-radius: 10px;
-      padding: 18px;
+      padding: 16px;
       border: 1px solid #e2e8f0;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      background-color: #e2e8f0;
     }
 
     .badge {
@@ -480,10 +488,10 @@
     </div>
   </section>
 
-  <!-- 5. Admin Panel (Add New Product to Website) -->
+  <!-- 5. Admin Panel (Add New Product with Image) -->
   <section id="admin" class="section">
     <h2 class="section-title">Company Admin: Add New Product</h2>
-    <p class="section-sub">Owner: Guddu — naya product aur price store mein add karein</p>
+    <p class="section-sub">Owner: Guddu — naya product, price aur image add karein</p>
 
     <div class="box" style="max-width: 600px;">
       <div class="form-group">
@@ -501,6 +509,14 @@
       <div class="form-group">
         <label>Price (₹)</label>
         <input type="number" id="newProdPrice" placeholder="Jaise: 1999" />
+      </div>
+      <div class="form-group">
+        <label>Image URL / Path (Optional — jaise: images/watch.jpg ya link)</label>
+        <input type="text" id="newProdImageUrl" placeholder="https://... ya images/product.jpg" />
+      </div>
+      <div class="form-group">
+        <label>Ya Device se Photo File Chunein (Optional)</label>
+        <input type="file" id="newProdImageFile" accept="image/*" />
       </div>
       <div class="form-group">
         <label>Short Description</label>
@@ -541,11 +557,33 @@
   <script>
     const OWNER_NAME = "Guddu";
     const WHATSAPP_NUMBER = "918383864128";
+    const FALLBACK_IMAGE = "https://via.placeholder.com/400x250?text=Apex+Gadget";
 
     const defaultProducts = [
-      { id: 1, name: "Wireless ANC Earbuds", category: "Audio", price: 1499, desc: "Clear calling mic, fast charging case, aur deep bass." },
-      { id: 2, name: "Ergonomic Wireless Mouse", category: "Work & Desk", price: 699, desc: "Silent clicks aur smooth tracking daily work ke liye." },
-      { id: 3, name: "20,000mAh Fast Power Bank", category: "Power", price: 1299, desc: "22.5W fast charging ke saath reliable travel backup." }
+      {
+        id: 1,
+        name: "Wireless ANC Earbuds",
+        category: "Audio",
+        price: 1499,
+        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
+        desc: "Clear calling mic, fast charging case, aur deep bass."
+      },
+      {
+        id: 2,
+        name: "Ergonomic Wireless Mouse",
+        category: "Work & Desk",
+        price: 699,
+        image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
+        desc: "Silent clicks aur smooth tracking daily work ke liye."
+      },
+      {
+        id: 3,
+        name: "20,000mAh Fast Power Bank",
+        category: "Power",
+        price: 1299,
+        image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=600&q=80",
+        desc: "22.5W fast charging ke saath reliable travel backup."
+      }
     ];
 
     let products = JSON.parse(localStorage.getItem("apexProducts")) || defaultProducts;
@@ -581,10 +619,12 @@
       }
 
       filtered.forEach(p => {
+        const imgSrc = p.image || FALLBACK_IMAGE;
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <div>
+            <img src="${imgSrc}" alt="${p.name}" class="product-img" onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';" />
             <span class="badge">${p.category}</span>
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
@@ -753,10 +793,34 @@
       renderEnquiries();
     }
 
+    function saveProductToStore(name, category, price, image, desc) {
+      products.push({
+        id: Date.now(),
+        name,
+        category,
+        price,
+        image: image || FALLBACK_IMAGE,
+        desc
+      });
+      localStorage.setItem("apexProducts", JSON.stringify(products));
+
+      document.getElementById("newProdName").value = "";
+      document.getElementById("newProdPrice").value = "";
+      document.getElementById("newProdImageUrl").value = "";
+      document.getElementById("newProdImageFile").value = "";
+      document.getElementById("newProdDesc").value = "";
+
+      renderProducts();
+      populateOrderSelect();
+      alert("Naya product photo ke saath store mein add ho gaya!");
+    }
+
     function addNewProduct() {
       const name = document.getElementById("newProdName").value.trim();
       const category = document.getElementById("newProdCategory").value;
       const price = Number(document.getElementById("newProdPrice").value);
+      const imageUrl = document.getElementById("newProdImageUrl").value.trim();
+      const fileInput = document.getElementById("newProdImageFile");
       const desc = document.getElementById("newProdDesc").value.trim();
 
       if (!name || !price || price <= 0 || !desc) {
@@ -764,16 +828,15 @@
         return;
       }
 
-      products.push({ id: Date.now(), name, category, price, desc });
-      localStorage.setItem("apexProducts", JSON.stringify(products));
-
-      document.getElementById("newProdName").value = "";
-      document.getElementById("newProdPrice").value = "";
-      document.getElementById("newProdDesc").value = "";
-
-      renderProducts();
-      populateOrderSelect();
-      alert("Naya product store mein add ho gaya!");
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          saveProductToStore(name, category, price, e.target.result, desc);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveProductToStore(name, category, price, imageUrl, desc);
+      }
     }
   </script>
 
