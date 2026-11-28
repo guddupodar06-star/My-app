@@ -3,365 +3,310 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Special Surprise For You ❤️</title>
+  <title>Heart Emoji Photo Maker — By Guddu</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
-      user-select: none;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #2b0a1e 0%, #0f0714 100%);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, #1b0716 0%, #0f172a 100%);
+      color: #f8fafc;
       padding: 20px;
-      overflow: hidden;
-    }
-
-    /* Floating background hearts */
-    .bg-heart {
-      position: fixed;
-      bottom: -30px;
-      font-size: 20px;
-      opacity: 0.6;
-      animation: floatUp 5s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
-      100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
-    }
-
-    /* Stage 1: Gift Box */
-    .gift-stage {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.4s ease;
-    }
-
-    .gift-stage:active {
-      transform: scale(0.95);
-    }
-
-    .gift-box {
-      position: relative;
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 22px;
-      animation: bounceBox 1.6s infinite ease-in-out;
-    }
-
-    @keyframes bounceBox {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-10px) rotate(-2deg); }
-      75% { transform: translateY(-6px) rotate(2deg); }
-    }
-
-    .lid {
-      position: absolute;
-      top: 0;
-      left: -8px;
-      width: 166px;
-      height: 36px;
-      background: linear-gradient(135deg, #ff4d6d, #c9184a);
-      border-radius: 8px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-      z-index: 3;
-      transition: transform 0.6s ease, opacity 0.5s ease;
-    }
-
-    .lid::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 28px;
-      height: 100%;
-      background: #ffd166;
-    }
-
-    .bow {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 32px;
-      z-index: 4;
-      transition: transform 0.6s ease, opacity 0.5s ease;
-    }
-
-    .box-body {
-      position: absolute;
-      top: 34px;
-      left: 0;
-      width: 150px;
-      height: 116px;
-      background: linear-gradient(135deg, #ff758f, #d90429);
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.45);
-    }
-
-    .box-body::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 28px;
-      height: 100%;
-      background: #ffd166;
-    }
-
-    .gift-open .lid {
-      transform: translateY(-70px) rotate(-18deg);
-      opacity: 0;
-    }
-
-    .gift-open .bow {
-      transform: translate(-50%, -85px) scale(1.3);
-      opacity: 0;
-    }
-
-    .tap-text {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffb3c1;
-      letter-spacing: 0.5px;
-    }
-
-    .tap-sub {
-      font-size: 13px;
-      color: #cbd5e1;
-      margin-top: 6px;
-    }
-
-    /* Stage 2: Love / Hate Card */
-    .card-stage {
-      display: none;
-      background: rgba(30, 16, 36, 0.92);
-      border: 1px solid rgba(255, 117, 143, 0.45);
-      border-radius: 20px;
-      padding: 28px 22px;
-      width: 100%;
-      max-width: 390px;
-      text-align: center;
-      box-shadow: 0 15px 40px rgba(255, 77, 109, 0.3);
-      animation: popIn 0.5s ease forwards;
-      position: relative;
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0.6); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .big-heart {
-      font-size: 54px;
-      margin-bottom: 10px;
-      animation: pulse 1.2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .card-stage h2 {
-      font-size: 23px;
-      color: #ffccd5;
-      margin-bottom: 8px;
-    }
-
-    .card-stage p {
-      font-size: 14px;
-      color: #e2e8f0;
-      margin-bottom: 24px;
-    }
-
-    .btn-arena {
-      position: relative;
-      height: 150px;
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 14px;
     }
 
-    .btn {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease;
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .btn-love {
-      background: linear-gradient(135deg, #ff4d6d, #ff0a54);
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(255, 10, 84, 0.45);
-      z-index: 2;
+    h1 {
+      text-align: center;
+      color: #ff758f;
+      font-size: 24px;
+      margin-bottom: 4px;
     }
 
-    .btn-love:active {
-      transform: scale(0.95);
+    .sub {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13.5px;
+      margin-bottom: 20px;
     }
 
-    .btn-hate {
-      background: #334155;
-      color: #f8fafc;
-      border: 1px solid #64748b;
-      position: relative;
-      z-index: 5;
-      transition: left 0.18s ease, top 0.18s ease;
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
-    .tease-msg {
+    .box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    label {
+      display: block;
       font-size: 12.5px;
-      color: #ff8fa3;
-      min-height: 20px;
-      margin-top: 8px;
+      color: #cbd5e1;
+      margin-bottom: 6px;
       font-weight: 600;
     }
 
-    /* Stage 3: Final Celebration */
-    .final-stage {
-      display: none;
-      text-align: center;
-      background: rgba(30, 16, 36, 0.95);
-      border: 1px solid #ff4d6d;
-      border-radius: 20px;
-      padding: 32px 22px;
-      max-width: 390px;
+    input[type="file"],
+    select,
+    input[type="range"] {
       width: 100%;
-      box-shadow: 0 15px 40px rgba(255, 77, 109, 0.4);
-      animation: popIn 0.5s ease forwards;
-    }
-
-    .final-stage h2 {
-      font-size: 25px;
-      color: #ff8fa3;
-      margin: 12px 0 10px;
-    }
-
-    .final-stage p {
-      font-size: 15px;
       color: #f8fafc;
-      line-height: 1.6;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 6px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      font-size: 13.5px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    button {
+      flex: 1;
+      min-width: 130px;
+      padding: 11px 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .btn-make {
+      background: #e11d48;
+    }
+
+    .btn-make:hover {
+      background: #be123c;
+    }
+
+    .btn-copy {
+      background: #2563eb;
+    }
+
+    .btn-copy:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-wa {
+      background: #16a34a;
+    }
+
+    .btn-wa:hover {
+      background: #15803d;
+    }
+
+    .result-box {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 12px;
+      overflow-x: auto;
+      max-height: 460px;
+      overflow-y: auto;
+    }
+
+    pre#emojiArt {
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", monospace;
+      font-size: 8px;
+      line-height: 1.05;
+      letter-spacing: 0;
+      white-space: pre;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    canvas {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Stage 1: Gift Box -->
-  <div class="gift-stage" id="giftStage" onclick="openGift()">
-    <div class="gift-box" id="giftBox">
-      <div class="bow">🎀</div>
-      <div class="lid"></div>
-      <div class="box-body"></div>
+  <div class="container">
+    <h1>💖 Heart Emoji Photo Maker</h1>
+    <p class="sub">Apni photo upload karein — dil wale emojis se face banega!</p>
+
+    <div class="controls">
+      <div class="box">
+        <label for="photoInput">1. Photo Chunein</label>
+        <input type="file" id="photoInput" accept="image/*" />
+      </div>
+
+      <div class="box">
+        <label for="detailRange">2. Detail / Size: <span id="detailVal">55</span></label>
+        <input type="range" id="detailRange" min="30" max="85" value="55" oninput="updateDetailLabel()" />
+      </div>
+
+      <div class="box">
+        <label for="heartTheme">3. Heart Style</label>
+        <select id="heartTheme">
+          <option value="love">Red & Pink Love (🖤❤️💖🩷🤍)</option>
+          <option value="rainbow">Colorful Hearts (🖤💜💙💚💛🤍)</option>
+          <option value="warm">Warm Sunset (🖤🤎❤️🧡💛🤍)</option>
+        </select>
+      </div>
     </div>
-    <div class="tap-text">Ek Surprise Gift Hai! 🎁</div>
-    <div class="tap-sub">Kholne ke liye box par tap karein</div>
-  </div>
 
-  <!-- Stage 2: Interactive Card -->
-  <div class="card-stage" id="cardStage">
-    <div class="big-heart">💖</div>
-    <h2>Sach-Sach Batana...</h2>
-    <p>Tumhare dil mein mere liye kya hai?</p>
-
-    <div class="btn-arena" id="arena">
-      <button class="btn btn-love" id="loveBtn" onclick="chooseLove()">I Love You ❤️</button>
-      <button class="btn btn-hate" id="hateBtn">I Hate You 💔</button>
+    <div class="btns">
+      <button class="btn-make" onclick="makeHeartArt()">Heart Face Banao</button>
+      <button class="btn-copy" onclick="copyArt()">Copy Emojis</button>
+      <button class="btn-wa" onclick="shareArt()">WhatsApp</button>
     </div>
 
-    <div class="tease-msg" id="teaseMsg"></div>
-  </div>
+    <div class="result-box">
+      <pre id="emojiArt">Yahan photo upload karke "Heart Face Banao" par click karein...</pre>
+    </div>
 
-  <!-- Stage 3: Final Message -->
-  <div class="final-stage" id="finalStage">
-    <div style="font-size: 60px;">🥰❤️🎉</div>
-    <h2>I Love You Too!</h2>
-    <p>Mujhe pehle se pata tha tum yahi chunoge! Tum mere liye bahut special ho. ❤️</p>
+    <p class="hint">Tip: Clear face ke liye ache light wali photo aur Detail 50–65 ke beech rakhein. Made by Guddu.</p>
+
+    <canvas id="workCanvas"></canvas>
   </div>
 
   <script>
-    const teaseLines = [
-      "Arre! Yeh button pakad mein nahi aayega 😜",
-      "Nice try! Dusra wala dabao ❤️",
-      "Yeh option band ho chuka hai 😂",
-      "Itni jaldi haar mat maano, par click nahi hoga 🏃‍♂️💨",
-      "Bas I Love You hi kaam karega 🥰"
-    ];
-    let teaseIndex = 0;
+    const themes = {
+      // Darkest to brightest
+      love: ["🖤", "❤️", "💖", "🩷", "🤍"],
+      rainbow: ["🖤", "💜", "💙", "💚", "💛", "🤍"],
+      warm: ["🖤", "🤎", "❤️", "🧡", "💛", "🤍"]
+    };
 
-    function openGift() {
-      const box = document.getElementById("giftBox");
-      box.classList.add("gift-open");
+    let loadedImg = null;
 
-      setTimeout(() => {
-        document.getElementById("giftStage").style.display = "none";
-        document.getElementById("cardStage").style.display = "block";
-      }, 550);
+    function updateDetailLabel() {
+      document.getElementById("detailVal").innerText = document.getElementById("detailRange").value;
+      if (loadedImg) makeHeartArt();
     }
 
-    const hateBtn = document.getElementById("hateBtn");
-    const arena = document.getElementById("arena");
+    document.getElementById("photoInput").addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
 
-    function dodgeButton(e) {
-      if (e) e.preventDefault();
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+          loadedImg = img;
+          makeHeartArt();
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
 
-      const arenaRect = arena.getBoundingClientRect();
-      const btnWidth = hateBtn.offsetWidth;
-      const btnHeight = hateBtn.offsetHeight;
-
-      const maxX = Math.max(10, arenaRect.width - btnWidth - 10);
-      const maxY = Math.max(10, arenaRect.height - btnHeight - 10);
-
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-
-      hateBtn.style.position = "absolute";
-      hateBtn.style.left = randomX + "px";
-      hateBtn.style.top = randomY + "px";
-
-      document.getElementById("teaseMsg").innerText = teaseLines[teaseIndex % teaseLines.length];
-      teaseIndex++;
-    }
-
-    // Mobile touch aur desktop hover dono par bhaagega
-    hateBtn.addEventListener("touchstart", dodgeButton, { passive: false });
-    hateBtn.addEventListener("mouseover", dodgeButton);
-    hateBtn.addEventListener("click", dodgeButton);
-
-    function chooseLove() {
-      document.getElementById("cardStage").style.display = "none";
-      document.getElementById("finalStage").style.display = "block";
-      for (let i = 0; i < 20; i++) {
-        setTimeout(spawnHeart, i * 120);
+    function makeHeartArt() {
+      if (!loadedImg) {
+        alert("Pehle ek photo select karein!");
+        return;
       }
+
+      const cols = parseInt(document.getElementById("detailRange").value, 10);
+      const themeKey = document.getElementById("heartTheme").value;
+      const palette = themes[themeKey];
+
+      // Aspect ratio adjust taaki face stretch na ho
+      const aspectRatio = loadedImg.height / loadedImg.width;
+      const rows = Math.max(15, Math.round(cols * aspectRatio * 0.95));
+
+      const canvas = document.getElementById("workCanvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = cols;
+      canvas.height = rows;
+
+      ctx.drawImage(loadedImg, 0, 0, cols, rows);
+      const pixels = ctx.getImageData(0, 0, cols, rows).data;
+
+      let artLines = [];
+      for (let y = 0; y < rows; y++) {
+        let line = "";
+        for (let x = 0; x < cols; x++) {
+          const idx = (y * cols + x) * 4;
+          const r = pixels[idx];
+          const g = pixels[idx + 1];
+          const b = pixels[idx + 2];
+
+          // Brightness (0 = dark, 255 = bright)
+          const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
+          const levelIndex = Math.min(
+            palette.length - 1,
+            Math.floor((brightness / 256) * palette.length)
+          );
+          line += palette[levelIndex];
+        }
+        artLines.push(line);
+      }
+
+      const finalArt = artLines.join("\n");
+      const preEl = document.getElementById("emojiArt");
+      preEl.innerText = finalArt;
+
+      // Mobile screen ke hisaab se font size thoda adjust
+      const computedFontSize = Math.max(5, Math.min(11, Math.floor(340 / cols)));
+      preEl.style.fontSize = computedFontSize + "px";
     }
 
-    function spawnHeart() {
-      const heart = document.createElement("div");
-      heart.className = "bg-heart";
-      heart.innerText = ["❤️", "💖", "🥰", "💕"][Math.floor(Math.random() * 4)];
-      heart.style.left = Math.random() * 95 + "vw";
-      heart.style.fontSize = (18 + Math.random() * 18) + "px";
-      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+    function copyArt() {
+      const text = document.getElementById("emojiArt").innerText;
+      if (!text || text.includes("Yahan photo upload")) {
+        alert("Pehle heart face generate karein!");
+        return;
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Heart emoji art copy ho gaya!");
+      }).catch(() => {
+        alert("Copy nahi ho paaya, manually select karke copy karein.");
+      });
     }
 
-    setInterval(spawnHeart, 900);
+    function shareArt() {
+      const text = document.getElementById("emojiArt").innerText;
+      if (!text || text.includes("Yahan photo upload")) {
+        alert("Pehle heart face generate karein!");
+        return;
+      }
+      if (text.length > 2500) {
+        alert("Art ka size thoda bada hai—WhatsApp mein cut sakta hai. 'Copy Emojis' use karke paste karein ya Detail slider kam (35–45) rakhein.");
+        return;
+      }
+      window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+    }
   </script>
 
 </body>
